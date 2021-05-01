@@ -1,18 +1,41 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.views import View
+from rest_framework import viewsets
+# import the serializers
+from .serializers import BookSerializer
 from .models import Book
 
-class Another(View):
+"""def first(request):
+    books = Book.objects.all();
+    #to pass in agurements type in {}
+    return render(request, 'first_temp.html', {'books': books})
+"""
+
+
+#clreated a view set for books 
+class BooksViewSet(viewsets.ModelViewSet):
+    # Tells what serializer we want to use
+    serializer_class = BookSerializer
+    #then make a qqurey set for the view
+    queryset = Book.objects.all()
+
+
+"""class Another(View):
 
     # gets all of the objects from book and places them in books
-    books = Book.objects.all();
+    books = Book.objects.filter();
+    output = ''
+
+    book = Book.objects.get(id=1);
 
     if (len(books) == 1):
-        output = f"We have { len(books) } book in Database."
-
+        output += f"We have {book.title} books in the Database with ID {book.id}.<br>"
+        output +=f"The price is {book.price}<br>"
+        output += f"We have { len(books) } book in the Database."
     else:
-        output = f"We have { len(books) } that many books in Database."
+        for book in books:
+            output += f"We have {book.title} books in the Database with ID {book.id}.<br>"
+            output +=f"The price is {book.price}<br>"
+        
+        output += f"We have { len(book) } books in the Database."
 
 
     def get(self, request):
@@ -21,4 +44,4 @@ class Another(View):
 
 
 def first(request):
-    return HttpResponse('First Message from Views')
+    return HttpResponse('First Message from Views')"""

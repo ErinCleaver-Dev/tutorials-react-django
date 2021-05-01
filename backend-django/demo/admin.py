@@ -3,4 +3,8 @@ from .models import Book
 
 # Register your models here.
 
-admin.site.register(Book);
+@admin.register(Book)
+class BookAdmin(admin.ModelAdmin):
+    list_display=['title', 'description', 'price']
+    list_filter=['published']
+    search_fields = ['title', 'description']
