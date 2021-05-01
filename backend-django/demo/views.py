@@ -2,6 +2,8 @@ from rest_framework import viewsets
 # import the serializers
 from .serializers import BookSerializer
 from .models import Book
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 """def first(request):
     books = Book.objects.all();
@@ -16,6 +18,10 @@ class BooksViewSet(viewsets.ModelViewSet):
     serializer_class = BookSerializer
     #then make a qqurey set for the view
     queryset = Book.objects.all()
+    authentication_classes = (TokenAuthentication, )
+    permission_classes =(IsAuthenticated, )
+
+
 
 
 """class Another(View):

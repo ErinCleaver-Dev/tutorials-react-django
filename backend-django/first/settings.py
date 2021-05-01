@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #add rest to the installed apps
     'rest_framework',
+    #added reset_framework authtoken
+    'rest_framework.authtoken',
     #add the application to the INSTALLED apps 
     'demo',
 ]
@@ -84,6 +86,17 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': str(os.path.join(BASE_DIR, "db.sqlite3"))
     }
+}
+
+
+#settings for the reset rest_framework
+#using an array of tuples
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES' : (
+        'rest_framework.permissions.IsAuthenticated',
+
+    )
+
 }
 
 
