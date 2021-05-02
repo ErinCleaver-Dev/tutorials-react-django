@@ -34,3 +34,18 @@ class Book(models.Model):
     def __str__(self):
         return self.title
 
+#seting up a one to many relationship using Djingo REST API
+class Character(models.Model):
+    name = models.CharField(max_length=30)
+    # used to get a ForeignKey from another sql entry
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='characters')
+
+
+#setting up many to many relationship using Django RESET API
+#having multiple connections between the data
+#an author has written more them one book and a author has more then one book.
+
+class Author(models.Model):
+    name = models.CharField(max_length=30)
+    surname = models.CharField(max_length=30)
+    books = models.ManyToManyField(Book, related_name='author')
